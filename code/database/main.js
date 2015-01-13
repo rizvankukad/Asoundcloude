@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
 
 module.exports = {
 
+	modellist : {},
+
 	checkconnection : function (app) {
 
 		mongoose.connect(app.get('datasources').dburl);
@@ -43,17 +45,17 @@ module.exports = {
 
 	initializeshema : function () {
 
-		console.log('initializeshema()');
-		
 		var schemalist = mongooselib.loadmongoschema(schemas);
 
-		this.initializemodels();
+		this.initializemodels(schemalist);
 	},
 
-	initializemodels : function () {
+	initializemodels : function (schemalist) {
 
-		console.log("initializemodels()");
+		for(var schema in schemalist) {
 
+			this.modellist[schema] = mongoose.model( schema, schemalist[schema] )
+		}
 	}
 
 };
