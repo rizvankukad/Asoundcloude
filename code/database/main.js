@@ -33,7 +33,7 @@ module.exports = {
 
 		db.once('open', function (callback) {
 			
-			console.log('Connected to Database main.connect()');
+			console.log('Database Alive ...');
 			
 			mongoose.connection.close();
 		});
