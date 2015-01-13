@@ -47,15 +47,19 @@ module.exports = {
 
 		var schemalist = mongooselib.loadmongoschema(schemas);
 
-		this.initializemodels(schemalist);
+		var modellist = this.initializemodels(schemalist);
+
+		return modellist;
 	},
 
 	initializemodels : function (schemalist) {
 
 		for(var schema in schemalist) {
 
-			this.modellist[schema] = mongoose.model( schema, schemalist[schema] )
+			this.modellist[schema] = mongoose.model( schema, schemalist[schema] );
 		}
+
+		return this.modellist;
 	}
 
 };
