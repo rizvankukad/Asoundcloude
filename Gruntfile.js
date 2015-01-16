@@ -37,9 +37,9 @@ module.exports = function(grunt) {
 				globals: {
 					jQuery: true
 				},
+				ignores : ['static/js/lib/**/*.js']
 			},
-			all: ['Gruntfile.js', 'static/js/**/*.js'],
-			ignores : ['static/js/lib/**/*.js']
+			all: ['Gruntfile.js', 'static/js/**/*.js']
 		}
 
 	});
