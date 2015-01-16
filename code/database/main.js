@@ -35,10 +35,35 @@ module.exports = {
 			
 			console.log('Database Alive ...');
 			
-			mongoose.connection.close();
+			//mongoose.connection.close();
 		});
 
-		_module.initializeshema();
+		this.modellist = _module.initializeshema();
+
+		/*var songmodel = new this.modellist.songs({
+			songid : 2,
+			songname : "Test SOng name 2",
+			songType : "Test song type 2",
+			keyword : "TEst keyword 2",
+			artists : "Test artist 2",
+			album : { albumname: "Test album 2", releasedate : new Date(), type : "test album type 2" },
+			rating : 5,
+			uploadeddate : new Date(),
+			filesize : 6666,
+			thumbimage : "test_thumb_path 2",
+			filelocation : "Test file location 2"
+		});
+
+		songmodel.save(function(err){
+
+			if(err) console.log(err); return false;
+
+			console.log("data saved...");
+
+			mongoose.connection.close();
+		});*/
+
+
 
 		return _module;
 	},

@@ -21,7 +21,11 @@ module.exports = {
 			songType : String,
 			keyword : String,
 			artists : String,
-			album : { name: String, releasedate : Date, type : String },
+			album : { 
+				albumname : { type: String, trim: true },
+				releasedate : { type: Date, default:  Date.now },
+				type : { type: String, trim: true }
+			},
 			rating : Number,
 			uploadeddate : Date,
 			filesize : Number,

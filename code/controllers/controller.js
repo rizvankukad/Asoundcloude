@@ -7,11 +7,13 @@
 * Date: 4-January-2014 06:05 AM IST
 */
 
+var home = require('../src/home/main.js');
+
 module.exports = {
 
 	/* Home controller callback */
 	homecontroller : function (req, res) {
-		res.end('Home');
+		home.init(req,res)
 	},
 
 	/* User controller callback */

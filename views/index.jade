@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1= "Songs list"
+
+  each val, index in songs
+    img(src='/images/iconmonstr-video-5-icon-24.png')
+    p #{val.songname}
+    p #{val.filesize}
+    p #{val.album.albumname}
+  
+  audio(src='http://localhost:5000/streamaudio', preload='auto', class="aplayer")
