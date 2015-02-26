@@ -5,6 +5,28 @@ module.exports = function(grunt) {
 
 		resmap: grunt.file.readJSON('static/resourceMap.json'),
 
+		concurrent: {
+			dev: {
+				tasks: ['nodemon', 'watch'],
+				options: {
+					logConcurrentOutput: true
+				}
+			}
+		},
+
+		nodemon: {
+			dev: {
+				script: 'bin/www',
+				options: {
+					cwd: __dirname,
+					ignore: ['node_modules/**','static/**','public/**'],
+					ext: 'js,coffee',
+					delay: 1000,
+					legacyWatch: true
+				}
+			}
+		},
+
 		uglify: {
 			my_target: {
 				files: [{
@@ -40,6 +62,23 @@ module.exports = function(grunt) {
 				ignores : ['static/js/lib/**/*.js']
 			},
 			all: ['Gruntfile.js', 'static/js/**/*.js']
+		},
+
+		watch: {
+			scripts: {
+				files: 'static/js/**/*.js',
+				tasks: ['jshint'],
+				options: {
+					interrupt: true,
+				},
+			},
+			css: {
+				files: 'static/css/**/*.scss',
+				tasks: ['sass'],
+				options: {
+					livereload: true,
+				},
+			}
 		}
 
 	});
@@ -48,8 +87,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-nodemon');
+	grunt.loadNpmTasks('grunt-concurrent');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	/* Default task(s). */
 	grunt.registerTask('default', ['jshint','uglify', 'sass']);
+	grunt.registerTask('start', ['concurrent']);
 
 };

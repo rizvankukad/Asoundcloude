@@ -17,6 +17,11 @@ router.get('/', function(req, res) {
 	controller.homecontroller(req, res);
 });
 
+/* Player controller */
+router.get('/player', function(req, res) {
+	controller.playercontroller(req, res);
+});
+
 /* User controller */
 router.get('/user', function(req, res) {
 	controller.usercontroller(req, res);
